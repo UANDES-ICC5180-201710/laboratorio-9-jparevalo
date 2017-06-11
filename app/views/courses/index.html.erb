@@ -8,12 +8,22 @@
       <th>Title</th>
       <th>Code</th>
       <th>Teacher</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @courses.each do |course| %>
+      <% course_id = course.id %>
+      <% if @current_user.id %>
+        <% button_class = 'btn btn-link notActive' %>
+        <% @current_user.interests.each do |interest| %>
+          <% if interest.course == course %>
+            <% button_class = 'btn btn-link isActive' %>
+            <% break %>
+          <% end %>
+        <% end %>
+      <% end %>
       <tr>
         <td class="td" id="td"><%= course.title %></td>
         <td><%= course.code %></td>
@@ -21,6 +31,15 @@
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <span>
+        <button onclick="toggleInterest(this.id)" id="<%= course_id -%>" type="button" class="<%= button_class -%>">
+          <span class="glyphicon glyphicon-heart" style="color:black" ></span>
+
+        </button>
+        <p id='interested-people-<%= course_id -%>' style="display:inline; padding-left:10px">Interesados: <%= course.interests.length %></p>
+        </span>
+        </td>
       </tr>
     <% end %>
   </tbody>

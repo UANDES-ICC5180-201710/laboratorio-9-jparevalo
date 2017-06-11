@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
   has_many :enrollments
   has_many :students, through: :enrollments
+  has_many :interests
   belongs_to :teacher, class_name: 'Person', foreign_key: 'person_id'
 
   validates :teacher, presence: true

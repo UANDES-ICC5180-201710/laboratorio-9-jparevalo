@@ -10,6 +10,8 @@ Rails.application.routes.draw do
         resources :grades
       end
     end
+    get "add_interest" => "interests#addInterest"
+    get "remove_interest" => "interests#removeInterest"
     resources :people
 
     root to: 'courses#index'

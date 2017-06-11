@@ -1,3 +1,15 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.isActive {
+    background-color: #d9534f;  // Hex for primary-danger
+}
+.notActive{
+    background-color: grey;
+}
+.isActive:hover{
+      background-color: #990000;
+}
+.notActive:hover{
+      background-color: #474747;
+}

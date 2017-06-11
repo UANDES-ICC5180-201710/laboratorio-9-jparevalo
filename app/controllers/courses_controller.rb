@@ -5,7 +5,9 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
-
+    puts current_person.interests
+    puts "HAOOA"
+    @current_user = current_person
     if params[:title]
       @courses = @courses.where("lower(title) like ?", "%#{params[:title]}%")
     end
